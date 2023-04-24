@@ -3,7 +3,7 @@ import defaultValues from "../utils/defaultValues";
 import { useEffect } from "react";
 import './styles/formUser.css'
 
-const FormUser = ({ createNewUser, updateInfo, updateUserById, setUpdateInfo, setFormClose, formClose }) => {
+const FormUser = ({ createNewUser, updateInfo, updateUserById, setUpdateInfo, setFormClose, formClose, setCreatedModal }) => {
   const { register, handleSubmit, reset } = useForm()
 
   useEffect(() => {
@@ -16,7 +16,9 @@ const FormUser = ({ createNewUser, updateInfo, updateUserById, setUpdateInfo, se
       setUpdateInfo()
     } else {
       createNewUser(data);
+      setCreatedModal(true);
     }
+    handleExit();
     reset(defaultValues);
   }
 
@@ -31,25 +33,25 @@ const FormUser = ({ createNewUser, updateInfo, updateUserById, setUpdateInfo, se
         <span onClick={handleExit} className="form-exit">x</span>
        <div className="form-item">
          <label className="form-label" htmlFor="email">Email</label>
-         <input className="form-input" {...register("email")} type="email" id="email" />
+         <input className="form-input"  {...register("email", { required: true })} type="email" id="email" />
        </div>
        <div className="form-item">
          <label className="form-label" htmlFor="password">Password</label>
-         <input className="form-input" {...register("password")} type="password" id="password" />
+         <input className="form-input" {...register("password", { required: true })} type="password" id="password" />
        </div>
        <div className="form-item">
          <label className="form-label" htmlFor="first_name">First Name</label>
-         <input className="form-input" {...register("first_name")} type="text" id="first_name" />
+         <input className="form-input" {...register("first_name", { required: true })} type="text" id="first_name" />
        </div>
        <div className="form-item">
          <label className="form-label" htmlFor="last_name">Last Name</label>
-         <input className="form-input" {...register("last_name")} type="text" id="last_name" />
+         <input className="form-input" {...register("last_name", { required: true })} type="text" id="last_name" />
        </div>
        <div className="form-item">
          <label className="form-label" htmlFor="birthday">Birthday</label>
-         <input className="form-input" {...register("birthday")} type="date" id="birthday" />
+         <input className="form-input" {...register("birthday", { required: true })} type="date" id="birthday" />
        </div>
-        <button onClick={handleExit} className="form-btn">{updateInfo ? 'Update' : 'Create'}</button>
+        <button type="submit" className="form-btn">{updateInfo ? 'Update' : 'Create'}</button>
       </form>
     </div>
     

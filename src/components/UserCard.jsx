@@ -1,9 +1,14 @@
 import './styles/userCard.css'
 
-const UserCard = ({ user, deleteUserById, setUpdateInfo, setFormClose }) => {
+const UserCard = ({  user,
+  setUpdateInfo,
+  setFormClose,
+  setConfirmDelete,
+  setUserId, }) => {
 
 const handleDelete = () => {
-    deleteUserById(user.id);
+    setUserId(user.id);
+    setConfirmDelete(true);
 };
 
 const handleUpdate = () => {
@@ -16,7 +21,7 @@ const handleUpdate = () => {
         <h2 className="user-name">{user.first_name} {user.last_name}</h2>
         <ul className="user-list">
             <li className="user-item"><span className="user-label">Email: </span><span className="user-value">{user.email}</span></li>
-            <li className="user-item"><span className="user-label">Birthday: </span><span className="user-value">{user.birthday}</span></li>
+            <li className="user-item"><span className="user-label"><i className='bx bxs-cake'></i> Birthday: </span><span className="user-value">{user.birthday}</span></li>
         </ul>
         <footer className="user-footer">
             <button className="user-btn user-delete" onClick={handleDelete}><i className='bx bxs-trash user-icons'></i></button>
