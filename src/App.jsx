@@ -4,10 +4,12 @@ import useUserCrud from './hooks/useUserCrud'
 import UserCard from './components/UserCard';
 import FormUser from './components/FormUser';
 import img from './assets/img.png'
+import Loading from './components/Loading';
 
 function App() {
 
   const [updateInfo, setUpdateInfo] = useState()
+  const [isLoading, setIsLoading] = useState(true);
 
   const [formClose, setFormClose] = useState(true)
 
@@ -20,17 +22,29 @@ function App() {
   const {users, getAllUsers, createNewUser, deleteUserById, updateUserById} = useUserCrud()
 
   useEffect(() => {
-    getAllUsers()
+    loadAllUsers()
   }, []);
 
   const handleOpenForm = () => {
     setFormClose(false)
   }
 
+  const loadAllUsers = async () => {
+    setIsLoading(true);
+    try {
+      await getAllUsers();
+      setIsLoading(false);
+    } catch {
+      setIsLoading(false);
+    }
+  };
+
   const handleDeleteYes = async () => {
+    setIsLoading(true);
     await deleteUserById(userId);
     console.warn("DELETED");
     setConfirmDelete(false);
+    setIsLoading(false);
     setDeletedModal(true);
   };
 
@@ -63,6 +77,9 @@ function App() {
       formClose={formClose}
       setCreatedModal={setCreatedModal}
      />
+
+      {isLoading && <Loading />}
+
      <div className="app-user_container">
         {users?.length > 0 ? (
           users?.map((user) => (
