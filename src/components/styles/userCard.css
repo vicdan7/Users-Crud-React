@@ -77,9 +77,11 @@
   }
   
   .modal-container {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.719);
     padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 1em;
+    color: black;
   }
   .modal-container p {
     margin: 0 0 1rem;
@@ -91,5 +93,9 @@
     background-color: #555a88;
     color: white;
     border-radius: 5px;
+  }
+  .modal-container button:hover{
+    background-color: rgb(26, 155, 206);
+    color: #07080e;
   }
   
