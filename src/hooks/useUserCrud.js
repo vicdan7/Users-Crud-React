@@ -24,7 +24,7 @@ const useUserCrud = () => {
 
   // DELETE
   const deleteUserById = (id) => {
-    const urlDelete = `${'http://localhost:8080/api/v1/users'}'${id}/`;
+    const urlDelete = `http://localhost:8080/api/v1/users/${id}`;
     axios
       .delete(urlDelete)
       .then((res) => getAllUsers())
@@ -33,7 +33,7 @@ const useUserCrud = () => {
 
   //UPDATE
   const updateUserById = (id, data) => {
-    const urlUpdate = `${'http://localhost:8080/api/v1/users'}${id}/`;
+    const urlUpdate = `http://localhost:8080/api/v1/users/${id}`;
     axios
       .put(urlUpdate, data)
       .then((res) => getAllUsers())
