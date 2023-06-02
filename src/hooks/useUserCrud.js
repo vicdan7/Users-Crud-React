@@ -9,7 +9,7 @@ const useUserCrud = () => {
   // GET
   const getAllUsers = () => {
     axios
-      .get(url)
+      .get('http://localhost:8080/api/v1/users')
       .then((res) => setUsers(res.data))
       .catch((err) => console.error(err));
   };
@@ -17,14 +17,14 @@ const useUserCrud = () => {
   // POST
   const createNewUser = (data) => {
     axios
-      .post(url, data)
+      .post('http://localhost:8080/api/v1/users', data)
       .then((res) => getAllUsers())
       .catch((err) => console.error(err));
   };
 
   // DELETE
   const deleteUserById = (id) => {
-    const urlDelete = `${url}${id}/`;
+    const urlDelete = `${'http://localhost:8080/api/v1/users'}'${id}/`;
     axios
       .delete(urlDelete)
       .then((res) => getAllUsers())
@@ -33,7 +33,7 @@ const useUserCrud = () => {
 
   //UPDATE
   const updateUserById = (id, data) => {
-    const urlUpdate = `${url}${id}/`;
+    const urlUpdate = `${'http://localhost:8080/api/v1/users'}${id}/`;
     axios
       .put(urlUpdate, data)
       .then((res) => getAllUsers())
