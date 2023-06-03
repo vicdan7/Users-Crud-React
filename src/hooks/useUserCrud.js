@@ -9,7 +9,7 @@ const useUserCrud = () => {
   // GET
   const getAllUsers = () => {
     axios
-      .get('http://localhost:8080/api/v1/users')
+      .get('https://crud-user-9fli.onrender.com/api/v1/users')
       .then((res) => setUsers(res.data))
       .catch((err) => console.error(err));
   };
@@ -17,14 +17,14 @@ const useUserCrud = () => {
   // POST
   const createNewUser = (data) => {
     axios
-      .post('http://localhost:8080/api/v1/users', data)
+      .post('https://crud-user-9fli.onrender.com/api/v1/users', data)
       .then((res) => getAllUsers())
       .catch((err) => console.error(err));
   };
 
   // DELETE
   const deleteUserById = (id) => {
-    const urlDelete = `http://localhost:8080/api/v1/users/${id}`;
+    const urlDelete = `https://crud-user-9fli.onrender.com/api/v1/users/${id}`;
     axios
       .delete(urlDelete)
       .then((res) => getAllUsers())
@@ -33,7 +33,7 @@ const useUserCrud = () => {
 
   //UPDATE
   const updateUserById = (id, data) => {
-    const urlUpdate = `http://localhost:8080/api/v1/users/${id}`;
+    const urlUpdate = `https://crud-user-9fli.onrender.com/api/v1/users/${id}`;
     axios
       .put(urlUpdate, data)
       .then((res) => getAllUsers())
